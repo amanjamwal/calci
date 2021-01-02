@@ -10,6 +10,10 @@ Has a set of classes and interfaces to implement basic functionality for RPN cal
 
 Provides a console tool to invoke, do calculations and show output on console.
 
+## Dependencies
+
+Project requires [Java v11 or greater](https://www.oracle.com/java/technologies/javase-downloads.html).
+
 ## Build
 
 Use gradle commands to build the project.
@@ -22,7 +26,7 @@ On Unix based machines
 On Windows based machines
 
 ```
-gradle.bat clean build
+gradlew.bat clean build
 ```
 
 ## Test
@@ -38,7 +42,7 @@ On Unix based machines
 On Windows based machines
 
 ```
-gradle.bat test
+gradlew.bat test
 ```
 
 ## Run
@@ -54,5 +58,5 @@ On Unix based machines
 On Windows based machines
 
 ```
-gradle.bat --console=plain  runExecutableJar
+gradlew.bat --console=plain  runExecutableJar
 ```
