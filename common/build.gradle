@@ -5,7 +5,7 @@ plugins {
 group = 'calci'
 version = '1.0-SNAPSHOT'
 
-sourceCompatibility = 14
+sourceCompatibility = 11
 
 repositories {
     mavenCentral()

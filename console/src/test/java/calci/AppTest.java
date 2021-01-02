@@ -38,7 +38,7 @@ class AppTest {
 
         App.main(new String[]{});
 
-        String expectedValue = "Stack: " + inputValue + "\n";
+        String expectedValue = "Stack: " + inputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
@@ -49,7 +49,7 @@ class AppTest {
 
         App.main(new String[]{});
 
-        String expectedValue = "Stack: " + inputValue + "\n";
+        String expectedValue = "Stack: " + inputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
@@ -61,7 +61,7 @@ class AppTest {
 
         App.main(new String[]{});
 
-        String expectedValue = "Stack: " + outputValue + "\n";
+        String expectedValue = "Stack: " + outputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
@@ -73,7 +73,7 @@ class AppTest {
 
         App.main(new String[]{});
 
-        String expectedValue = "Stack: " + outputValue + "\n";
+        String expectedValue = "Stack: " + outputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
@@ -85,7 +85,7 @@ class AppTest {
 
         App.main(new String[]{});
 
-        String expectedValue = "Stack: " + outputValue + "\n";
+        String expectedValue = "Stack: " + outputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
@@ -97,27 +97,33 @@ class AppTest {
 
         App.main(new String[]{});
 
-        String expectedValue = "Stack:" + outputValue + "\n";
+        String expectedValue = "Stack:" + outputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
     @Test
     void checkMultipleLineOperations() {
-        String inputValue = "5 6 * 1 2 + - undo\n - 3 / sqrt";
+        String inputValue = "5 6 * 1 2 + - undo" +System.lineSeparator() + " - 3 / sqrt";
         System.setIn(toInputStream(inputValue));
         String outputFirstValue = "30 3";
         String outputSecondValue = "3";
 
         App.main(new String[]{});
 
-        String expectedFirstLine = "Stack: " + outputFirstValue + "\n";
-        String expectedSecondLine = "Stack: " + outputSecondValue + "\n";
+        String expectedFirstLine = "Stack: " + outputFirstValue + System.lineSeparator();
+        String expectedSecondLine = "Stack: " + outputSecondValue + System.lineSeparator();
         assertEquals(expectedFirstLine + expectedSecondLine, outputStream.toString());
     }
 
     @Test
     void checkMultipleLineOperationsWithUndoClear() {
-        String inputValue = "5 6 * 1 2 + - undo\n - 3 / sqrt\nclear\nundo undo";
+        String inputValue = "5 6 * 1 2 + - undo"
+                + System.lineSeparator()
+                + "- 3 / sqrt" +
+                System.lineSeparator() +
+                "clear" +
+                System.lineSeparator() +
+                "undo undo";
         System.setIn(toInputStream(inputValue));
         String outputFirstValue = "30 3";
         String outputSecondValue = "3";
@@ -126,10 +132,10 @@ class AppTest {
 
         App.main(new String[]{});
 
-        String expectedValue = "Stack: " + outputFirstValue + "\n" +
-                "Stack: " + outputSecondValue + "\n" +
-                "Stack:" + outputThirdValue + "\n" +
-                "Stack: " + outputFourthValue + "\n";
+        String expectedValue = "Stack: " + outputFirstValue + System.lineSeparator() +
+                "Stack: " + outputSecondValue + System.lineSeparator() +
+                "Stack:" + outputThirdValue + System.lineSeparator() +
+                "Stack: " + outputFourthValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
@@ -141,37 +147,37 @@ class AppTest {
 
         App.main(new String[]{});
 
-        String expectedValue = "Stack:" + outputValue + "\n";
+        String expectedValue = "Stack:" + outputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
     @Test
     void checkInsufficientParameters() {
-        String inputValue = "1 + 2\n";
+        String inputValue = "1 + 2" + System.lineSeparator();
         System.setIn(toInputStream(inputValue));
         String expectedErrorValue = "operator + (position: 3): insufficient parameters";
         String outputValue = "1";
 
         App.main(new String[]{});
 
-        String expectedValue = expectedErrorValue + "\n" +
-                "Stack: " + outputValue + "\n" +
-                "Stack: " + outputValue + "\n";
+        String expectedValue = expectedErrorValue + System.lineSeparator() +
+                "Stack: " + outputValue + System.lineSeparator() +
+                "Stack: " + outputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
     @Test
     void checkInsufficientParametersForSqrt() {
-        String inputValue = "1 2 + clear sqrt 1 2 +\n";
+        String inputValue = "1 2 + clear sqrt 1 2 +" + System.lineSeparator();
         System.setIn(toInputStream(inputValue));
         String expectedErrorValue = "operator sqrt (position: 13): insufficient parameters";
         String outputValue = "";
 
         App.main(new String[]{});
 
-        String expectedValue = expectedErrorValue + "\n" +
-                "Stack:" + outputValue + "\n" +
-                "Stack:" + outputValue + "\n";
+        String expectedValue = expectedErrorValue + System.lineSeparator() +
+                "Stack:" + outputValue + System.lineSeparator() +
+                "Stack:" + outputValue + System.lineSeparator();
         assertEquals(expectedValue, outputStream.toString());
     }
 
