@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group = 'calci'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = 14
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':common')
+
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+
+    testRuntimeOnly 'org.slf4j:slf4j-jdk14:1.7.30'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes("Main-Class": 'calci.App')
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task runExecutableJar(type: JavaExec) {
+    classpath = files(tasks.jar)
+    standardInput = System.in
+}
