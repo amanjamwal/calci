@@ -88,7 +88,7 @@ public class OperandStore {
         StringBuilder sb = new StringBuilder();
         sb.append("Stack:");
         for (BigDecimal value : values) {
-            BigDecimal valueToBeViewed = value.setScale(viewDecimalScale, roundingMode);
+            BigDecimal valueToBeViewed = value.setScale(viewDecimalScale, RoundingMode.DOWN);
             sb.append(" ").append(valueToBeViewed.stripTrailingZeros().toPlainString());
         }
         return sb.toString();
